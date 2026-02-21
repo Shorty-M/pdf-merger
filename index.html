@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Merger | Secure Local Tool</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PDF.js for rendering thumbnails -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+
+    <!-- PDF-Lib -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- SortableJS for drag-to-reorder -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- Local Styles & Scripts -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1><i class="fa-solid fa-file-pdf"></i> PDF Merger</h1>
+            <p>Combine multiple PDF files securely right in your browser. No files are uploaded to any server.</p>
+        </header>
+
+        <section class="upload-section">
+            <div id="drop-zone" class="drop-zone glass-panel">
+                <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                <h2>Drag & Drop PDFs Here</h2>
+                <p>or</p>
+                <label for="file-input" class="btn btn-primary">Browse Files</label>
+                <input type="file" id="file-input" accept="application/pdf" multiple hidden>
+            </div>
+        </section>
+
+        <section id="file-list-section" class="file-list-section glass-panel hidden">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-layer-group"></i> Document Pages</h3>
+                <span class="file-count" id="file-count">0 pages</span>
+            </div>
+            <p class="hint"><i class="fa-solid fa-arrows-up-down"></i> Drag to reorder pages. Click rotate to change
+                orientation.</p>
+            <div id="page-grid" class="page-grid">
+                <!-- Dynamically populated with page cards -->
+            </div>
+
+            <div class="action-bar">
+                <button id="clear-btn" class="btn btn-secondary"><i class="fa-solid fa-trash-can"></i> Clear
+                    All</button>
+                <button id="merge-btn" class="btn btn-accent"><i class="fa-solid fa-object-group"></i> Merge
+                    Document</button>
+            </div>
+        </section>
+
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+            <p id="loading-text">Merging PDFs...</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
